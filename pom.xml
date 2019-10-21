@@ -14,6 +14,14 @@
   	</properties>
 	
 	<build>
+		<resources>
+			<resource>
+				<directory>src/resources</directory>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+			</resource>
+		</resources>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<testSourceDirectory>src/test/java</testSourceDirectory>
 		
