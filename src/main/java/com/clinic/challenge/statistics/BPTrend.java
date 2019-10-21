@@ -77,7 +77,7 @@ public class BPTrend{
         }
         
         //formula , slope variable
-        float slope = (y2.pressure - y1.pressure) / (x1 - x2);
+        float slope = (y2.pressure - y1.pressure) / (x2 - x1);
         
         result = result + " The barometric pressure slope is " 
         +String.format("%.6f",slope) + " \nthe forecast is: " + (slope > 0 ? "Positive" : (slope == 0 ? "Equal" : "Negative"));
