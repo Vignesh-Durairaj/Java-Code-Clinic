@@ -1,12 +1,12 @@
 package com.clinic.challenge.statistics;
 
-import static java.nio.file.Files.lines;
 import static java.nio.file.Paths.get;
-import static java.util.stream.Collectors.toList;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,24 +19,28 @@ public class BPTrendEnhanced {
 	private static final DateFormat format = new SimpleDateFormat("yyyy_MM_dd HH:mm:ss");
 	
 	private List<WeatherData> weatherData = new ArrayList<>();
-	private int index = 0;
 	
 	public void readData(String fileName) throws URISyntaxException {
 		URI filePath = getClass().getClassLoader().getResource(fileName).toURI();
         
-        try {
-        	weatherData.addAll(
-        			lines(get(filePath))
-        				.skip(1)
-        				.map(string -> string.split("\t"))
-		        		.map(this::getDataFromArray)
-		        		.peek(data -> data.setIndex(index ++))
-		        		.collect(toList()));
+        try (BufferedReader reader = Files.newBufferedReader(get(filePath))) {
+        	String currentLine = null;
+        	boolean isFirstLine = true;
+        	int index = 0;
+        	while((currentLine = reader.readLine()) != null) {
+        		
+        		if (isFirstLine) {
+        			isFirstLine = false;
+        			continue;
+        		}
+        		
+        		weatherData.add(getDataFromArray(currentLine.split("\t"), index));
+        		index ++;
+        	}
         } catch	(IOException e) {
         	e.printStackTrace();
         }
         
-        index = 0;
 	}
 	
 	public String doCalc(String from, String to){
@@ -106,11 +110,12 @@ public class BPTrendEnhanced {
         System.out.println(bpTrend.doCalc(from, to) );
 	}
 	
-	private WeatherData getDataFromArray(String[] inputArr) {
+	private WeatherData getDataFromArray(String[] inputArr, int index) {
 		WeatherData weatherData = null;
 		
 		try {
 			weatherData = new WeatherData(getDateFromString(inputArr[0]), Float.valueOf(inputArr[2]), Float.valueOf(inputArr[4]));
+			weatherData.setIndex(index);
 		} catch(ParseException | NumberFormatException e) {
 			e.printStackTrace();
 		}
