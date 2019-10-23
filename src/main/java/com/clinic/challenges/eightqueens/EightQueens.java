@@ -1,3 +1,5 @@
+package com.clinic.challenges.eightqueens;
+
 public class EightQueens {
     public static void main(String[] args) {
         int nQueens = 8;

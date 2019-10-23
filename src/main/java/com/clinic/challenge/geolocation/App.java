@@ -10,7 +10,7 @@ import java.net.*;
 
 public class App {
 
-    public static void main(String[] args) throws UnknownHostException {
+    public static void main(String[] args) {
         JSONObject locationObject = null;
 
         String ipAddress = getIpAddress();
@@ -30,30 +30,22 @@ public class App {
     }
 
     protected static String getData(String ip) {
-        URL url;
         String response = "";
-        if (!ip.equals("")) ip = "/" + ip ;
         try {
-
-            String a="https://ipinfo.io"+ip+"/json";
-            url = new URL(a);
+            URL url = new URL(format("https://ipinfo.io/%sjson", ip.equals("") ? "" : (ip + "/")));
             URLConnection conn = url.openConnection();
-
-            // open the stream and put it into BufferedReader
-            BufferedReader br = new BufferedReader(
-                               new InputStreamReader(conn.getInputStream()));
-
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String inputLine; 
             while ((inputLine = br.readLine()) != null) {
-                    response = response + inputLine;
+            	response = response + inputLine;
             }
             br.close();
         } catch (MalformedURLException e) {
             e.printStackTrace();
-            return "";
+            response = "";
         } catch (IOException e) {
             e.printStackTrace();
-            return "";
+            response = "";
         }
         return response;
     }
