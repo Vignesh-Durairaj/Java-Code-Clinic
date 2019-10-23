@@ -7,7 +7,7 @@ import java.net.*;
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnknownHostException {
         String location = "";
         JSONObject obj = null;
         String maplink =""; 
@@ -15,15 +15,20 @@ public class App {
         //test case
         
 
+        String ipAddress = InetAddress.getLocalHost().getHostAddress();
+        System.out.println("The IP Address is : " + ipAddress);
 
-        location = getData("8.8.8.8");
+        location = getData(ipAddress);
         //System.out.println(location);
         obj = new JSONObject(location);
-        System.out.println("\n\nYou are in or near the city of "
-        + obj.getString("city")+ ", "+ obj.getString("country"));
-        maplink = "https://www.google.com/maps/?q="
-        +obj.getString("loc");
-        System.out.println("Your approximate location on the map : \n" + maplink ); 
+        if (obj.has("bogon") && obj.getBoolean("bogon")) {
+        	System.out.println("Your network provider is private and hides the location");
+        } else {
+        	System.out.println("\n\nYou are in or near the city of " + obj.getString("city")+ ", "+ obj.getString("country"));
+        	maplink = "https://www.google.com/maps/?q=" +obj.getString("loc");
+        	System.out.println("Your approximate location on the map : \n" + maplink ); 
+        }
+        
     }
 
     public static String getData(String ip) {
