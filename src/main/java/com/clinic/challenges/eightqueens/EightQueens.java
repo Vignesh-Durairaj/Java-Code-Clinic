@@ -1,5 +1,7 @@
 package com.clinic.challenges.eightqueens;
 
+import static java.lang.Math.abs;
+
 public class EightQueens {
     public static void main(String[] args) {
         int nQueens = 8;
@@ -55,7 +57,7 @@ public class EightQueens {
                 return false;
 
             //Check both diagonals
-            if (Math.abs(currentRow - i) == Math.abs(currentColumn - board[i])) 
+            if (abs(currentRow - i) == abs(currentColumn - board[i])) 
                 return false;
         }
 
