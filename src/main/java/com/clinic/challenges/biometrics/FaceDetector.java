@@ -1,21 +1,22 @@
 package com.clinic.challenges.biometrics;
+
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
-import java.io.*;
-import java.util.Iterator;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import org.openimaj.image.FImage;
-import org.openimaj.image.ImageUtilities;
+
 import org.openimaj.image.processing.face.detection.DetectedFace;
 import org.openimaj.image.processing.face.detection.HaarCascadeDetector;
-import java.awt.Dimension;
 
 
 public class FaceDetector extends JFrame {
 
-  public java.awt.image.BufferedImage readImg(String fn, int x,int y) throws IOException{
+public java.awt.image.BufferedImage readImg(String fn, int x,int y) throws IOException{
     int width = x;
     int height = y;
     BufferedImage image = null;
