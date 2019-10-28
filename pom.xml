@@ -110,11 +110,18 @@
 	</build>
 	
 	<dependencies>
-	<dependency>
-        <groupId>org.json</groupId>
-        <artifactId>json</artifactId>
-        <version>20180130</version>
-    </dependency>
+		<dependency>
+			<groupId>jfugue</groupId>
+			<artifactId>jfugue</artifactId>
+			<version>4.0.3</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/jfugue-4.0.3.jar</systemPath>
+		</dependency>
+		<dependency>
+	        <groupId>org.json</groupId>
+	        <artifactId>json</artifactId>
+	        <version>20180130</version>
+	    </dependency>
 		<dependency>
 	  		<groupId>junit</groupId>
 	  		<artifactId>junit</artifactId>

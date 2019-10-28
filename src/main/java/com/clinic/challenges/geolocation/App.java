@@ -1,4 +1,4 @@
-package com.clinic.challenge.geolocation;
+package com.clinic.challenges.geolocation;
 
 import org.json.*;
 

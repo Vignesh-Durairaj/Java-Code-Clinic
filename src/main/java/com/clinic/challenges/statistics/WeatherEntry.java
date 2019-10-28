@@ -1,4 +1,4 @@
-package com.clinic.challenge.statistics;
+package com.clinic.challenges.statistics;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
