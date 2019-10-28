@@ -1,5 +1,9 @@
 package com.clinic.challenges.peripherals;
 
+import static java.awt.Toolkit.getDefaultToolkit;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -48,12 +52,13 @@ public class MouseChecker extends JPanel implements MouseListener, Runnable {
 	@Override
 	public void run() {
 		JFrame frame = new JFrame("MouseMusic");
+		
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JComponent newContentPane = this;
         newContentPane.setOpaque(true);
         frame.setContentPane(newContentPane);
+        frame.setAlwaysOnTop(true);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.pack();
         frame.setVisible(true);
 		addMouseListener(this);
 		music = new MouseMusic();
