@@ -5,11 +5,14 @@ import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
+import org.openimaj.image.FImage;
+import org.openimaj.image.ImageUtilities;
 import org.openimaj.image.processing.face.detection.DetectedFace;
 import org.openimaj.image.processing.face.detection.HaarCascadeDetector;
 
@@ -58,7 +61,21 @@ public class FaceDetector extends JFrame {
   
 	public void detectFace() {
 		JFrame fr = new JFrame("Discovered Faces");
-		// Add face detection functionality here
+		
+		// Face detection functionality
+		faces = detector.detectFaces(ImageUtilities.createFImage(img));
+		if (faces == null) {
+			System.out.println("No Faces found :(");
+			return;
+		}
+		
+		Iterator<DetectedFace> detectedFaces = faces.iterator();
+		while(detectedFaces.hasNext()) {
+			DetectedFace face = detectedFaces.next();
+			FImage imageOne = face.getFacePatch();
+			ImagePanel newImagePanel = new ImagePanel(ImageUtilities.createBufferedImage(imageOne));
+			fr.add(newImagePanel);
+		}
    
 		fr.setLayout(new FlowLayout(0));
 		fr.setSize(500, 500);

@@ -1,1 +1,1 @@
-java -jar target\Detect-1.0-SNAPSHOT-jar-with-dependencies.jar people-13305611.jpg 1300 833
+java -jar target\CodeClinic-0.0.1-SNAPSHOT-jar-with-dependencies.jar ../src/resources/biometrics/people-13305611.jpg 1300 833

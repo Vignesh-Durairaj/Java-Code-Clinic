@@ -28,8 +28,9 @@
 		
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<!-- <version>2.3.2</version> -->
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
@@ -50,7 +51,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.clinic.challenge.geolocation.App</mainClass>
+							<mainClass>com.clinic.challenges.biometrics.FaceDetector</mainClass>
 						</manifest>
 					</archive>
 			        <descriptorRefs>
@@ -63,7 +64,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.clinic.challenge.geolocation.App</mainClass>
+							<mainClass>com.clinic.challenges.biometrics.FaceDetector</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
