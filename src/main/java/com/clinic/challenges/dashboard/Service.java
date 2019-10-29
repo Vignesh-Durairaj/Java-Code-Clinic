@@ -1,15 +1,21 @@
-import org.springframework.boot.*;
-import org.springframework.boot.autoconfigure.*;
-import org.springframework.stereotype.*;
-import org.springframework.web.bind.annotation.*;
+package com.clinic.challenges.dashboard;
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.time.*;
-import java.time.temporal.ChronoUnit;
-import java.util.*;
 import java.text.DecimalFormat;
+import java.time.Duration;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @EnableAutoConfiguration
@@ -27,7 +33,21 @@ public class Service {
     @CrossOrigin
     @RequestMapping("/data")
     Map home(Service s) {
-        // REST API Service Method here
+        // REST API Service Method
+    	ZonedDateTime now = ZonedDateTime.now();
+    	ZonedDateTime midNight = now.truncatedTo(ChronoUnit.DAYS);
+    	
+    	Duration duration = Duration.between(midNight, now);
+    	int secondsPassed = (int) duration.getSeconds();
+    	
+    	Map<String, Object> resultMap = new HashMap<>();
+    	resultMap.put("pulsometer", pulsometer.get(secondsPassed));
+    	resultMap.put("r", r.get(secondsPassed));
+    	resultMap.put("g", g.get(secondsPassed));
+    	resultMap.put("b", b.get(secondsPassed));
+    	resultMap.put("EngineEff", decimalFormat.format(EngineEff.get(secondsPassed)));
+    	
+    	return resultMap;
     }
 
     public static void loadData(){
