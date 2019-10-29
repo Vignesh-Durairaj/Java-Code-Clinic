@@ -7,6 +7,12 @@
 	<artifactId>CodeClinic</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	
+	<parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.10.RELEASE</version>
+    </parent>
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -28,8 +34,13 @@
 		
 		<plugins>
 			<plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<!-- <version>2.3.2</version> -->
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
@@ -38,7 +49,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.9</version>
+				<!-- <version>2.9</version> -->
 				<configuration>
 					<downloadSources>true</downloadSources>
 					<downloadJavadocs>true</downloadJavadocs>
@@ -50,7 +61,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.clinic.challenge.geolocation.App</mainClass>
+							<mainClass>com.clinic.challenges.biometrics.FaceDetector</mainClass>
 						</manifest>
 					</archive>
 			        <descriptorRefs>
@@ -63,7 +74,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.clinic.challenge.geolocation.App</mainClass>
+							<mainClass>com.clinic.challenges.biometrics.FaceDetector</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
@@ -83,7 +94,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.12.4</version>
+				<!-- <version>2.12.4</version> -->
 				<configuration>
 					<useSystemClassLoader>false</useSystemClassLoader>
 				</configuration>
@@ -129,88 +140,97 @@
 	
 	<dependencies>
 		<dependency>
-	      <groupId>org.openimaj</groupId>
-	      <artifactId>audio-processing</artifactId>
-	      <version>${openimaj.version}</version>
-	      <scope>compile</scope>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<!-- <version>2.5.0</version> -->
+        </dependency>
+		<dependency>
+			<groupId>org.openimaj</groupId>
+			<artifactId>audio-processing</artifactId>
+			<version>${openimaj.version}</version>
+			<scope>compile</scope>
 	    </dependency>
 	    <dependency>
-	      <groupId>org.openimaj</groupId>
-	      <artifactId>demos</artifactId>
-	      <version>${openimaj.version}</version>
-	      <scope>compile</scope>
+			<groupId>org.openimaj</groupId>
+			<artifactId>demos</artifactId>
+			<version>${openimaj.version}</version>
+			<scope>compile</scope>
 	    </dependency>
 	    <dependency>
-	      <groupId>org.openimaj</groupId>
-	      <artifactId>core-hadoop</artifactId>
-	      <version>${openimaj.version}</version>
-	      <scope>compile</scope>
+			<groupId>org.openimaj</groupId>
+			<artifactId>core-hadoop</artifactId>
+			<version>${openimaj.version}</version>
+			<scope>compile</scope>
 	    </dependency>
 	    <dependency>
-	      <groupId>org.openimaj</groupId>
-	      <artifactId>faces</artifactId>
-	      <version>${openimaj.version}</version>
-	      <scope>compile</scope>
+			<groupId>org.openimaj</groupId>
+			<artifactId>faces</artifactId>
+			<version>${openimaj.version}</version>
+			<scope>compile</scope>
 	    </dependency>
 	    <dependency>
-	      <groupId>org.openimaj</groupId>
-	      <artifactId>image-annotation</artifactId>
-	      <version>${openimaj.version}</version>
-	      <scope>compile</scope>
+			<groupId>org.openimaj</groupId>
+			<artifactId>image-annotation</artifactId>
+			<version>${openimaj.version}</version>
+			<scope>compile</scope>
 	    </dependency>
 	    <dependency>
-	      <groupId>org.openimaj</groupId>
-	      <artifactId>image-feature-extraction</artifactId>
-	      <version>${openimaj.version}</version>
-	      <scope>compile</scope>
+			<groupId>org.openimaj</groupId>
+			<artifactId>image-feature-extraction</artifactId>
+			<version>${openimaj.version}</version>
+			<scope>compile</scope>
 	    </dependency>
 	    <dependency>
-	      <groupId>org.openimaj</groupId>
-	      <artifactId>image-local-features</artifactId>
-	      <version>${openimaj.version}</version>
-	      <scope>compile</scope>
+			<groupId>org.openimaj</groupId>
+			<artifactId>image-local-features</artifactId>
+			<version>${openimaj.version}</version>
+			<scope>compile</scope>
 	    </dependency>
 	    <dependency>
-	      <groupId>org.openimaj</groupId>
-	      <artifactId>image-processing</artifactId>
-	      <version>${openimaj.version}</version>
-	      <scope>compile</scope>
+			<groupId>org.openimaj</groupId>
+			<artifactId>image-processing</artifactId>
+			<version>${openimaj.version}</version>
+			<scope>compile</scope>
 	    </dependency>
 	    <dependency>
-	      <groupId>org.openimaj</groupId>
-	      <artifactId>clustering</artifactId>
-	      <version>${openimaj.version}</version>
-	      <scope>compile</scope>
+	      	<groupId>org.openimaj</groupId>
+	      	<artifactId>clustering</artifactId>
+	      	<version>${openimaj.version}</version>
+	      	<scope>compile</scope>
 	    </dependency>
 	    <dependency>
-	      <groupId>org.openimaj</groupId>
-	      <artifactId>nearest-neighbour</artifactId>
-	      <version>${openimaj.version}</version>
-	      <scope>compile</scope>
+	      	<groupId>org.openimaj</groupId>
+	      	<artifactId>nearest-neighbour</artifactId>
+	      	<version>${openimaj.version}</version>
+	      	<scope>compile</scope>
 	    </dependency>
 	    <dependency>
-	      <groupId>org.openimaj</groupId>
-	      <artifactId>klt-tracker</artifactId>
-	      <version>${openimaj.version}</version>
-	      <scope>compile</scope>
+	      	<groupId>org.openimaj</groupId>
+	      	<artifactId>klt-tracker</artifactId>
+	      	<version>${openimaj.version}</version>
+	      	<scope>compile</scope>
 	    </dependency>
 	    <dependency>
-	      <groupId>org.openimaj</groupId>
-	      <artifactId>video-processing</artifactId>
-	      <version>${openimaj.version}</version>
-	      <scope>compile</scope>
+	      	<groupId>org.openimaj</groupId>
+	      	<artifactId>video-processing</artifactId>
+	      	<version>${openimaj.version}</version>
+	      	<scope>compile</scope>
 	    </dependency>
 	    <dependency>
-	      <groupId>org.openimaj</groupId>
-	      <artifactId>xuggle-video</artifactId>
-	      <version>${openimaj.version}</version>
-	      <scope>compile</scope>
+	      	<groupId>org.openimaj</groupId>
+	      	<artifactId>xuggle-video</artifactId>
+	      	<version>${openimaj.version}</version>
+	      	<scope>compile</scope>
 	    </dependency>
 	    <dependency>
-	      <groupId>org.openimaj</groupId>
-	      <artifactId>common-stream</artifactId>
-	      <version>${openimaj.version}</version>
-	      <scope>compile</scope>
+	      	<groupId>org.openimaj</groupId>
+	      	<artifactId>common-stream</artifactId>
+	      	<version>${openimaj.version}</version>
+	      	<scope>compile</scope>
 	    </dependency>
 		<dependency>
 			<groupId>jfugue</groupId>
@@ -222,12 +242,12 @@
 		<dependency>
 	        <groupId>org.json</groupId>
 	        <artifactId>json</artifactId>
-	        <version>20180130</version>
+	        <!-- <version>20180130</version> -->
 	    </dependency>
 		<dependency>
 	  		<groupId>junit</groupId>
 	  		<artifactId>junit</artifactId>
-	  		<version>4.12</version>
+	  		<!-- <version>4.12</version> -->
 	  		<scope>test</scope>
 	  	</dependency>
 	  	<dependency>
