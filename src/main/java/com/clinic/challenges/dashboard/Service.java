@@ -32,7 +32,7 @@ public class Service {
 
     @CrossOrigin
     @RequestMapping("/data")
-    Map home(Service s) {
+    public Map<String, Object> home(Service s) {
         // REST API Service Method
     	ZonedDateTime now = ZonedDateTime.now();
     	ZonedDateTime midNight = now.truncatedTo(ChronoUnit.DAYS);

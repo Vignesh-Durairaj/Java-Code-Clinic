@@ -19,6 +19,11 @@ import org.openimaj.image.processing.face.detection.HaarCascadeDetector;
 
 public class FaceDetector extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+	private static final HaarCascadeDetector detector = new HaarCascadeDetector();
+	private BufferedImage img = null;
+	private List < DetectedFace > faces = null;
+	
 	public BufferedImage readImg(String fn, int x,int y) throws IOException{
 	    int width = x;
 	    int height = y;
@@ -37,11 +42,6 @@ public class FaceDetector extends JFrame {
 	    
 	    return image;
 	}
-
-	private static final long serialVersionUID = 1L;
-	private static final HaarCascadeDetector detector = new HaarCascadeDetector();
-	private BufferedImage img = null;
-	private List < DetectedFace > faces = null;
 	
 	public FaceDetector(String[] a) throws IOException {
 	    int w = Integer.parseInt(a[1]);
