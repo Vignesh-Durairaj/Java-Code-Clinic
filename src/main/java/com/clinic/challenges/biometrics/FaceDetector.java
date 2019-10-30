@@ -22,7 +22,6 @@ public class FaceDetector extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private static final HaarCascadeDetector detector = new HaarCascadeDetector();
 	private BufferedImage img = null;
-	private List < DetectedFace > faces = null;
 	
 	public BufferedImage readImg(String fn, int x,int y) throws IOException{
 	    int width = x;
@@ -63,7 +62,7 @@ public class FaceDetector extends JFrame {
 		JFrame fr = new JFrame("Discovered Faces");
 		
 		// Face detection functionality
-		faces = detector.detectFaces(ImageUtilities.createFImage(img));
+		List < DetectedFace > faces = detector.detectFaces(ImageUtilities.createFImage(img));
 		if (faces == null) {
 			System.out.println("No Faces found :(");
 			return;

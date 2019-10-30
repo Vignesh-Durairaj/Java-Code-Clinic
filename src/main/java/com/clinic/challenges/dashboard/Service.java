@@ -20,15 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @EnableAutoConfiguration
 public class Service {
-    static ArrayList<Integer> pulsometer = new ArrayList();
-    static ArrayList<Integer> r = new ArrayList();
-    static ArrayList<Integer> g = new ArrayList();
-    static ArrayList<Integer> b = new ArrayList();
-    static ArrayList<Float> EngineEff = new ArrayList();
+    private static ArrayList<Integer> pulsometer = new ArrayList<>();
+    private static ArrayList<Integer> r = new ArrayList<>();
+    private static ArrayList<Integer> g = new ArrayList<>();
+    private static ArrayList<Integer> b = new ArrayList<>();
+    private static ArrayList<Float> EngineEff = new ArrayList<>();
 
-
-    String pattern = "###.##";
-    DecimalFormat decimalFormat = new DecimalFormat(pattern);
+    private String pattern = "###.##";
+    private DecimalFormat decimalFormat = new DecimalFormat(pattern);
 
     @CrossOrigin
     @RequestMapping("/data")

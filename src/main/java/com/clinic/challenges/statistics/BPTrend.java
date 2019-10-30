@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class BPTrend{
 
-    ArrayList<WeatherEntry> collectedData = new ArrayList<>();
+    private ArrayList<WeatherEntry> collectedData = new ArrayList<>();
             
     public void readData(String fileName) {
     	
