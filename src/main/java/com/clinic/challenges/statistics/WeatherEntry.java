@@ -7,9 +7,9 @@ import java.util.Date;
 public class WeatherEntry{
 
     //fields to be used from input files
-	Date when;
-	float pressure;
-	float humidity;
+	private Date when;
+	private float pressure;
+	private float humidity;
 
     public String toString(){
         DateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

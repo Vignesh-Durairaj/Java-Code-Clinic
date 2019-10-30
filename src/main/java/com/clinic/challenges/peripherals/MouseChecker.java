@@ -17,6 +17,7 @@ public class MouseChecker extends JPanel implements MouseListener, Runnable {
 	public MouseMusic music;
 	
 	public MouseChecker() {
+		// Can be implemented, if needed for some initialization
 	}
 	
 	public void mousePressed(MouseEvent e) {
@@ -35,14 +36,17 @@ public class MouseChecker extends JPanel implements MouseListener, Runnable {
 
 	@Override
 	public void mouseClicked(MouseEvent paramMouseEvent) {
+		System.out.println("Mouse Click happened at : " + paramMouseEvent.getX() + " : " + paramMouseEvent.getY());
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent paramMouseEvent) {
+		System.out.println("Mouse Entered at : " + paramMouseEvent.getX() + " : " + paramMouseEvent.getY());
 	}
 
 	@Override
 	public void mouseExited(MouseEvent paramMouseEvent) {
+		System.out.println("Mouse Exited at : " + paramMouseEvent.getX() + " : " + paramMouseEvent.getY());
 	}
 
 	@Override

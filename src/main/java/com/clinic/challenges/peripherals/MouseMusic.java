@@ -14,7 +14,7 @@ public class MouseMusic implements Runnable {
 	public Object lock = new Object();
 	
 	public MouseMusic() {
-		
+		// Can be implemented if needed in future
 	}
 
 	@Override
